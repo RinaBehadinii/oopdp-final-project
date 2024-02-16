@@ -12,7 +12,7 @@ using oopdp_final_project.DatabaseConnection;
 namespace oopdp_final_project.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20240213140049_InitialCreate")]
+    [Migration("20240216141526_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -65,7 +65,7 @@ namespace oopdp_final_project.Migrations
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
-                        .HasColumnName("desciption");
+                        .HasColumnName("description");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -84,7 +84,7 @@ namespace oopdp_final_project.Migrations
 
                     b.HasIndex("RestaurantId");
 
-                    b.ToTable("MenuItems");
+                    b.ToTable("menu_items", (string)null);
                 });
 
             modelBuilder.Entity("oopdp_final_project.Models.Order", b =>
@@ -103,12 +103,12 @@ namespace oopdp_final_project.Migrations
                     b.Property<string>("CustomerAddress")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
-                        .HasColumnName("costumer_address");
+                        .HasColumnName("customer_address");
 
                     b.Property<string>("CustomerName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
-                        .HasColumnName("costumer_name");
+                        .HasColumnName("customer_name");
 
                     b.Property<string>("Status")
                         .IsRequired()

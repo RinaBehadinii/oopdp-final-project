@@ -15,8 +15,8 @@ namespace oopdp_final_project.Migrations
                 {
                     order_id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    costumer_name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    costumer_address = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    customer_name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    customer_address = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     total_price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     status = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     created_at = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -42,21 +42,21 @@ namespace oopdp_final_project.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "MenuItems",
+                name: "menu_items",
                 columns: table => new
                 {
                     item_id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     restaurant_id = table.Column<int>(type: "int", nullable: false),
                     name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    desciption = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     price = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MenuItems", x => x.item_id);
+                    table.PrimaryKey("PK_menu_items", x => x.item_id);
                     table.ForeignKey(
-                        name: "FK_MenuItems_Restaurants_restaurant_id",
+                        name: "FK_menu_items_Restaurants_restaurant_id",
                         column: x => x.restaurant_id,
                         principalTable: "Restaurants",
                         principalColumn: "restaurant_id",
@@ -75,9 +75,9 @@ namespace oopdp_final_project.Migrations
                 {
                     table.PrimaryKey("PK_OrderItems", x => new { x.order_id, x.item_id });
                     table.ForeignKey(
-                        name: "FK_OrderItems_MenuItems_item_id",
+                        name: "FK_OrderItems_menu_items_item_id",
                         column: x => x.item_id,
-                        principalTable: "MenuItems",
+                        principalTable: "menu_items",
                         principalColumn: "item_id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -89,8 +89,8 @@ namespace oopdp_final_project.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_MenuItems_restaurant_id",
-                table: "MenuItems",
+                name: "IX_menu_items_restaurant_id",
+                table: "menu_items",
                 column: "restaurant_id");
 
             migrationBuilder.CreateIndex(
@@ -105,7 +105,7 @@ namespace oopdp_final_project.Migrations
                 name: "OrderItems");
 
             migrationBuilder.DropTable(
-                name: "MenuItems");
+                name: "menu_items");
 
             migrationBuilder.DropTable(
                 name: "Orders");

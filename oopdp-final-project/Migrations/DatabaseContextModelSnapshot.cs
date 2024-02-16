@@ -63,7 +63,7 @@ namespace oopdp_final_project.Migrations
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
-                        .HasColumnName("desciption");
+                        .HasColumnName("description");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -82,7 +82,7 @@ namespace oopdp_final_project.Migrations
 
                     b.HasIndex("RestaurantId");
 
-                    b.ToTable("MenuItems");
+                    b.ToTable("menu_items", (string)null);
                 });
 
             modelBuilder.Entity("oopdp_final_project.Models.Order", b =>
@@ -101,12 +101,12 @@ namespace oopdp_final_project.Migrations
                     b.Property<string>("CustomerAddress")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
-                        .HasColumnName("costumer_address");
+                        .HasColumnName("customer_address");
 
                     b.Property<string>("CustomerName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
-                        .HasColumnName("costumer_name");
+                        .HasColumnName("customer_name");
 
                     b.Property<string>("Status")
                         .IsRequired()

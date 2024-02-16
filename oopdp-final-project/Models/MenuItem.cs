@@ -21,7 +21,7 @@ namespace oopdp_final_project.Models
         [Column("name")]
         public string Name { get; set; }
 
-        [Column("desciption")]
+        [Column("description")]
         public string Description { get; set; }
        
         [Column("price")]

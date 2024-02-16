@@ -23,10 +23,10 @@ namespace oopdp_final_project.DatabaseConnection
                     {
                         if (_instance == null)
                         {
-                            var configuration = new ConfigurationBuilder()
+                            var builder = new ConfigurationBuilder()
                                 .SetBasePath(Directory.GetCurrentDirectory())
-                                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                                .Build();
+                                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+                            IConfiguration configuration = builder.Build();
 
                             var connectionString = configuration.GetConnectionString("DatabaseContext");
                             var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();

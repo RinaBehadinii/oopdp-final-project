@@ -2,10 +2,6 @@
 using oopdp_final_project.Entities;
 using oopdp_final_project.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace oopdp_final_project.DatabaseConnection
 {
@@ -18,12 +14,16 @@ namespace oopdp_final_project.DatabaseConnection
 
         public DatabaseContext() { }
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=(LocalDb)\\MSSQLLocalDB;Database=FoodDelivery;User Id=;Password=;\r\n");
+            optionsBuilder.UseSqlServer("Server=(LocalDb)\\MSSQLLocalDB;Database=FoodDelivery;Trusted_Connection=True;");
         }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<MenuItem>().ToTable("menu_items");
+
             modelBuilder.Entity<OrderItem>()
                 .HasKey(oi => new { oi.OrderId, oi.ItemId });
 
@@ -42,6 +42,5 @@ namespace oopdp_final_project.DatabaseConnection
                 .WithMany(r => r.MenuItems)
                 .HasForeignKey(mi => mi.RestaurantId);
         }
-
     }
 }
